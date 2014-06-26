@@ -1,33 +1,24 @@
 $(function(){
 
-// Model //
-
-var Tasks = Backbone.Model.extend({
+var TodoToday = Backbone.Model.extend({
   defaults: {
-    activity: " ",
-    time: " "
+    activity: "name your activity",
+    time: "hours expected to be spent"
   }
 
 });
 
 
-// Collection //
-var TaskList = Backbone.Collection.extend({
-  model: Tasks,
+var TodoTodayList = Backbone.Collection.extend({
 
-  order: function(){
-    if(!this.length) return 1;
-    return this.last().get('order') + 1;
-  },
+  model: TodoToday
 
-  comparator: 'order'
 
 });
 
 
-// View //
 
-var TasksView = Backbone.View.extend({
+var TodoTodayView = Backbone.View.extend({
 
   tagName: 'li',
   template: _.template($('#item').html()),
