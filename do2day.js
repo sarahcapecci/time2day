@@ -146,6 +146,11 @@ app.TodoView2 = Backbone.View.extend({
       }
 });
 
+app.ChartView = Backbone.View.extend({
+  el: "canvas",
+  
+
+})
 
 //Router - 
 app.Router = Backbone.Router.extend({
@@ -154,8 +159,6 @@ app.Router = Backbone.Router.extend({
       },
       startApp: function() {
         app.todoList.trigger('reset');
-        // app.todoList.reset();
-
       }
 });
 
@@ -205,9 +208,12 @@ var barChartData = {
           fillColor : "rgba(151,187,205,0.5)",
           strokeColor : "rgba(151,187,205,1)",
           data : realTimesArray
-        }
-      ]
-
+        },
+      ],
     }
 
-var myLine = new Chart(document.getElementById("myChart").getContext("2d")).Bar(barChartData);
+
+
+$('a').on("click", function(){
+  var timeChart = new Chart(document.getElementById("myChart").getContext("2d")).Bar(barChartData);
+});
