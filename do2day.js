@@ -13,12 +13,12 @@ app.TodoList = Backbone.Collection.extend({
       localStorage: new Store("backbone-todo")
 });
 
-
 app.AppView = Backbone.View.extend({
       el: '#expected',
       initialize: function () {
         this.input = this.$("#new-todo");
         this.range = this.$('#expected-time');
+        this.newRange = this.$('#real-time');
         // when new elements are added to the collection render then with addOne
         app.todoList.on('add', this.addOne, this);
         app.todoList.on('reset', this.addAll, this);
@@ -47,47 +47,12 @@ app.AppView = Backbone.View.extend({
       newAttributes: function(){
         return {
           title: this.input.val(),
-          hoursExpected: this.range.val()
-          
+          hoursExpected: this.range.val(),
+          hoursSpent: this.newRange.val()   
         }
       }
 });
 
-
-// app.AppView2 = Backbone.View.extend({
-//       el: '#real',
-//       initialize: function () {
-//         this.newRange = this.$('#real-time');
-//         // when new elements are added to the collection render then with addOne
-//         app.todoList.on('add', this.addOne, this);
-//         app.todoList.on('reset', this.addAll, this);
-//         app.todoList.fetch(); // Loads list from local storage
-//       },
-//       events: {
-//         'click .saveTime': 'saveTime'
-//       },
-//       addOne: function(todo){
-//         var view = new app.TodoView({model: todo});
-//         $('#todo-list-copy').append(view.render().el);
-//       },
-//       addAll: function(){
-//         this.$('#todo-list-copy').html('');
-//          // clean the todo list
-//         app.todoList.each(this.addOne, this);
-//       },
-//       saveTime: function(){
-//         app.todoList.create(this.updateAttribute());
-//         this.range.val('1'); // reset range to 1
-//       },
-
-//       updateAttribute: function(){
-//         return {
-//           hoursSpent: this.newRange.val();
-//         }
-//       }
-
-
-// });
 
 
 
@@ -102,6 +67,7 @@ app.TodoView = Backbone.View.extend({
       initialize: function(){
         this.model.on('change', this.render, this);
         this.model.on('destroy', this.remove, this);
+
       },
       events: {
         'click .edit' : 'edit',
@@ -113,14 +79,13 @@ app.TodoView = Backbone.View.extend({
       },
       
       close: function(){
-        var value = this.input.val().trim();
-        if(value) {
-          this.model.save({title: value});
-        };
-        var rangeValue = this.input.val();
-        if(rangeValue) {
-          this.model.save({hoursExpected: rangeValue});
-        }
+        //sets what will be edited and updated
+        var value = this.$('#editInput').val();
+        this.model.save({title: value});
+
+        var rangeValue = this.$('#editRange').val();
+        this.model.save({hoursExpected: rangeValue});
+        
 
         this.$el.removeClass('nowEditing');
       },
@@ -133,6 +98,7 @@ app.TodoView = Backbone.View.extend({
 });
 
 app.TodoView2 = Backbone.View.extend({
+
       tagName: 'li',
 
       template: _.template($('#item-template-2').html()),
@@ -144,10 +110,12 @@ app.TodoView2 = Backbone.View.extend({
 
       initialize: function(){
         this.model.on('change', this.render, this);
+        this.model.on('destroy', this.remove, this);
       },
 
       events: {
-        'click .saveTime': 'updateValue'
+        'click .saveTime': 'updateValue',
+        'click .destroy': 'destroy'
       },
 
       close: function(){
@@ -159,6 +127,10 @@ app.TodoView2 = Backbone.View.extend({
 
       updateValue: function(){
           this.close(); 
+      },
+
+      destroy: function(){
+        this.model.destroy();
       }
 });
 
@@ -178,4 +150,3 @@ app.Router = Backbone.Router.extend({
 app.router = new app.Router();
 Backbone.history.start(); 
 app.appView = new app.AppView();
-// app.appView2 = new app.AppView2();
