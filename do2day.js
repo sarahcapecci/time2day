@@ -1,3 +1,4 @@
+
 var app = {}; // create namespace for our app
 
 app.Todo = Backbone.Model.extend({
@@ -84,7 +85,8 @@ app.TodoView = Backbone.View.extend({
         //sets what will be edited and updated
         var value = this.$('#editInput').val();
         if(value){
-        this.model.save({title: value});  
+        this.model.save({title: value});
+        // activities.push(value)  
         }
         this.$('#editInput').removeClass('show');
         
@@ -93,6 +95,7 @@ app.TodoView = Backbone.View.extend({
         var rangeValue = this.$('#editRange').val();
         if(rangeValue) {
           this.model.save({hoursExpected: rangeValue});
+          // xpTimesArray.push(rangeValue)
         }
         this.$('#editRange').removeClass('show');
       },
@@ -135,6 +138,7 @@ app.TodoView2 = Backbone.View.extend({
         if(rangeValueReal) {
           this.model.save({hoursSpent: rangeValueReal});
         }
+        // realTimesArray.push(rangeValueReal);
       },
 
       updateValue: function(){
@@ -146,11 +150,6 @@ app.TodoView2 = Backbone.View.extend({
       }
 });
 
-app.ChartView = Backbone.View.extend({
-  el: "canvas",
-  
-
-})
 
 //Router - 
 app.Router = Backbone.Router.extend({
@@ -162,14 +161,11 @@ app.Router = Backbone.Router.extend({
       }
 });
 
-
     // instance of the Collection
 app.todoList = new app.TodoList();
 app.router = new app.Router();
 Backbone.history.start(); 
 app.appView = new app.AppView();
-
-
 
 // CHART setting
 
@@ -196,6 +192,7 @@ for (var i = 0; i < realTimes.length; ++i) {
 }
 
 
+
 var barChartData = {
       labels : activities,
       datasets : [
@@ -212,8 +209,10 @@ var barChartData = {
       ],
     }
 
+var timeChart = new Chart(document.getElementById("myChart").getContext("2d")).Bar(barChartData);
+
+// $('a').on("click", function(){
+  
+// });
 
 
-$('a').on("click", function(){
-  var timeChart = new Chart(document.getElementById("myChart").getContext("2d")).Bar(barChartData);
-});
