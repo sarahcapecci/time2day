@@ -15,7 +15,7 @@
             <h1>Expectations</h1>
             <input id="new-todo" placeholder="What will you do today?">
             <label for="hours">For how long?</label>
-            <input type="range" name="hours" min="0" max="10" step="0.5" >
+            <input id="expected-time" type="range" name="hours" min="0" max="10" step="0.5" >
             <button class="saveTask">Save</button>
           </header>
           <section id="main">
@@ -26,9 +26,7 @@
         <section id="real">
           <header id="header">
             <h1>Done</h1>
-            <label for="hours">For how long?</label>
-            <input type="range" name="hours" min="0" max="10" step="0.5"/>
-            <button class="saveTime">Save</button>
+            <h2>For how long?</h2>
             <section id="main">
                 <ul id="todo-list-copy"></ul>
             </section>
@@ -39,10 +37,10 @@
         <script type="text/template" id="item-template">
           <div class="view">
             <label><%- title %></label>
-            <span><%- hours %></span>
+            <span><%- hoursExpected %></span>
             <button class="edit">Edit</button>
-            <input class="edit" type="text" value="<%- title %>">
-            <input class="edit" type="range" name="hours" min="0" max="10" step="0.5"/>
+            <input id="editInput" type="text" value="<%- title %>">
+            <input id="editRange" type="range" name="hours" min="0" max="10" step="0.5"/>
             <button class="doneEditing">Done</button>
             <button class="destroy">Remove</button>
           </div>
@@ -50,9 +48,12 @@
         
 
         <script type="text/template" id="item-template-2">
-          <div class="view">
+          <div class="view2">
             <label><%- title %></label>
-            <span><%- hours %>hours</span>
+            <span><%- hoursExpected %>hours</span>
+            <span><%- hoursSpent %>hours</span>
+            <input id="real-time" type="range" name="hours" min="0" max="10" step="0.5"/>
+            <button class="saveTime">Save</button>
           </div>
         </script>
 
