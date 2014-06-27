@@ -187,3 +187,22 @@ td, th {
 body {
   font-family: 'Open Sans', 'Arial', sans-serif;
 }
+
+li {
+  list-style: none;
+}
+
+#expected, #real {
+  width: 50%;
+  float: left;
+  display: inline-block;
+}
+
+#result {
+  clear: both;
+  width: 100%;
+}
+
+#editInput, #editRange, .doneEditingTask, .doneEditingTime {
+  display: none;
+}

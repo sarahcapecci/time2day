@@ -9,7 +9,7 @@
 
     </head>
     <body>
-        
+        <h1>How do you <em>expect</em> to spend your time today?</h1>
         <section id="expected">
             <h1>Expectations</h1>
             <input id="new-todo" placeholder="What will you do today?">
@@ -39,7 +39,7 @@
             <input id="editInput" type="text" value="<%- title %>">
             <button class="doneEditingTask">Done</button>
 
-            <span><%- hoursExpected %></span>
+            <span><%- hoursExpected %> hours</span>
             <button class="editTime">Edit</button>
             
             <input id="editRange" type="range" name="hours" min="0" max="10" step="0.5" value="<% hoursExpected %>"/>
