@@ -170,10 +170,26 @@ app.appView = new app.AppView();
 
 // CHART setting
 
+//STILL have to make it refresh everytime an item is added!
+
 var divLabel = $('div.view2').find("label");
 var activities = [];
 for (var i = 0; i < divLabel.length; ++i) {
   activities.push(divLabel[i].innerHTML);
+}
+
+var expectedTimes = $('div.view2').find(".expectedTime");
+var xpTimesArray = [];
+
+for (var i = 0; i < expectedTimes.length; ++i) {
+  xpTimesArray.push(parseFloat(expectedTimes[i].innerHTML));
+}
+
+var realTimes = $('div.view2').find(".realTime");
+var realTimesArray = [];
+
+for (var i = 0; i < realTimes.length; ++i) {
+  realTimesArray.push(parseFloat(realTimes[i].innerHTML));
 }
 
 
@@ -183,15 +199,15 @@ var barChartData = {
         {
           fillColor : "rgba(220,220,220,0.5)",
           strokeColor : "rgba(220,220,220,1)",
-          data : [65,59,90,81,56,55,40]
+          data : xpTimesArray
         },
         {
           fillColor : "rgba(151,187,205,0.5)",
           strokeColor : "rgba(151,187,205,1)",
-          data : [28,48,40,19,96,27,100]
+          data : realTimesArray
         }
       ]
 
     }
 
-  var myLine = new Chart(document.getElementById("myChart").getContext("2d")).Bar(barChartData);
+var myLine = new Chart(document.getElementById("myChart").getContext("2d")).Bar(barChartData);
