@@ -26,10 +26,12 @@
         <section id="real">
           <header id="header">
             <h1>Done</h1>
-
             <label for="hours">For how long?</label>
             <input type="range" name="hours" min="0" max="10" step="0.5"/>
-            <button class="saveTask">Save</button>
+            <button class="saveTime">Save</button>
+            <section id="main">
+                <ul id="todo-list-copy"></ul>
+            </section>
           </header>
 
         </section>
@@ -46,6 +48,13 @@
           </div>
         </script>
         
+
+        <script type="text/template" id="item-template-2">
+          <div class="view">
+            <label><%- title %></label>
+            <span><%- hours %>hours</span>
+          </div>
+        </script>
 
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
