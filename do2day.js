@@ -54,8 +54,6 @@ app.AppView = Backbone.View.extend({
 });
 
 
-
-
 app.TodoView = Backbone.View.extend({
       tagName: 'li',
       template: _.template($('#item-template').html()),
@@ -70,32 +68,46 @@ app.TodoView = Backbone.View.extend({
 
       },
       events: {
-        'click .edit' : 'edit',
-        'click .doneEditing' : 'updateValue',
+        'click .editTask' : 'editTask',
+        'click .editTime' : 'editTime',
+        'click .doneEditingTask' : 'updateTaskValue',
+        'click .doneEditingTime' : 'updateTimeValue',
        'click .destroy': 'destroy'
       },
-      edit: function(){
-        this.$el.addClass('nowEditing');
+      editTask: function(){
+        this.$('#editInput').addClass('show');
       },
-      
-      close: function(){
+      editTime: function(){
+        this.$('#editRange').addClass('show');
+      },
+      updateTaskValue: function(){
         //sets what will be edited and updated
         var value = this.$('#editInput').val();
-        this.model.save({title: value});
-
-        var rangeValue = this.$('#editRange').val();
-        this.model.save({hoursExpected: rangeValue});
+        if(value){
+        this.model.save({title: value});  
+        }
+        this.$('#editInput').removeClass('show');
         
-
-        this.$el.removeClass('nowEditing');
       },
+      updateTimeValue: function(){
+        var rangeValue = this.$('#editRange').val();
+        if(rangeValue) {
+          this.model.save({hoursExpected: rangeValue});
+        }
+        this.$('#editRange').removeClass('show');
+      },
+
       updateValue: function(){
-          this.close(); 
+          this.updateTitle();
+          this.updateHours(); 
+          this.$el.removeClass('nowEditing');
       },
       destroy: function(){
         this.model.destroy();
       }
 });
+
+//View of the last part - when the day is over
 
 app.TodoView2 = Backbone.View.extend({
 
@@ -135,18 +147,21 @@ app.TodoView2 = Backbone.View.extend({
 });
 
 
+//Router - 
 app.Router = Backbone.Router.extend({
       routes: {
-        '*filter' : 'setFilter'
+        'start' : 'startApp'
       },
-      setFilter: function() {
-        app.todoList.trigger('reset');
+      startApp: function() {
+        // app.todoList.trigger('reset');
+        app.todoList.reset();
+
       }
 });
 
 
     // instance of the Collection
-    app.todoList = new app.TodoList();
+app.todoList = new app.TodoList();
 app.router = new app.Router();
 Backbone.history.start(); 
 app.appView = new app.AppView();

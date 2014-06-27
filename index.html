@@ -37,11 +37,15 @@
         <script type="text/template" id="item-template">
           <div class="view">
             <label><%- title %></label>
-            <span><%- hoursExpected %></span>
-            <button class="edit">Edit</button>
+            <button class="editTask">Edit</button>
             <input id="editInput" type="text" value="<%- title %>">
-            <input id="editRange" type="range" name="hours" min="0" max="10" step="0.5"/>
-            <button class="doneEditing">Done</button>
+            <button class="doneEditingTask">Done</button>
+
+            <span><%- hoursExpected %></span>
+            <button class="editTime">Edit</button>
+            
+            <input id="editRange" type="range" name="hours" min="0" max="10" step="0.5" value="<% hoursExpected %>"/>
+            <button class="doneEditingTime">Done</button>
             
           </div>
         </script>
