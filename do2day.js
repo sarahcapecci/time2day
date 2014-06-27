@@ -167,11 +167,18 @@ Backbone.history.start();
 app.appView = new app.AppView();
 
 
+
 // CHART setting
+
+var divLabel = $('div.view2').find("label");
+var activities = [];
+for (var i = 0; i < divLabel.length; ++i) {
+  activities.push(divLabel[i].innerHTML);
+}
 
 
 var barChartData = {
-      labels : ["January","February","March","April","May","June","July"],
+      labels : activities,
       datasets : [
         {
           fillColor : "rgba(220,220,220,0.5)",
