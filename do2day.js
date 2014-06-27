@@ -34,13 +34,14 @@ app.AppView = Backbone.View.extend({
       },
       addOne: function(todo){
         var view = new app.TodoView({model: todo});
+        var view2 = new app.TodoView2({model: todo});
         $('#todo-list').append(view.render().el);
-        $('#todo-list-copy').append(view.render().el);
+        $('#todo-list-copy').append(view2.render().el);
       },
       addAll: function(){
         this.$('#todo-list').html('');
         this.$('#todo-list-copy').html('');
-         // clean the todo list
+         // clean the  list
         app.todoList.each(this.addOne, this);
       },
       newAttributes: function(){
@@ -53,24 +54,40 @@ app.AppView = Backbone.View.extend({
 });
 
 
-app.AppView2 = Backbone.View.extend({
-      el: '#real',
-      initialize: function () {
-        // when new elements are added to the collection render then with addOne
-        app.todoList.on('add', this.addOne, this);
-        app.todoList.on('reset', this.addAll, this);
-        app.todoList.fetch(); // Loads list from local storage
-      },
-      events: {
-        'click .saveTime': 'saveTime'
-      },
-      saveTime: function(){
+// app.AppView2 = Backbone.View.extend({
+//       el: '#real',
+//       initialize: function () {
+//         this.newRange = this.$('#real-time');
+//         // when new elements are added to the collection render then with addOne
+//         app.todoList.on('add', this.addOne, this);
+//         app.todoList.on('reset', this.addAll, this);
+//         app.todoList.fetch(); // Loads list from local storage
+//       },
+//       events: {
+//         'click .saveTime': 'saveTime'
+//       },
+//       addOne: function(todo){
+//         var view = new app.TodoView({model: todo});
+//         $('#todo-list-copy').append(view.render().el);
+//       },
+//       addAll: function(){
+//         this.$('#todo-list-copy').html('');
+//          // clean the todo list
+//         app.todoList.each(this.addOne, this);
+//       },
+//       saveTime: function(){
+//         app.todoList.create(this.updateAttribute());
+//         this.range.val('1'); // reset range to 1
+//       },
 
-      },
+//       updateAttribute: function(){
+//         return {
+//           hoursSpent: this.newRange.val();
+//         }
+//       }
 
 
-});
-
+// });
 
 
 
@@ -132,12 +149,14 @@ app.TodoView2 = Backbone.View.extend({
       events: {
         'click .saveTime': 'updateValue'
       },
+
       close: function(){
-        var rangeValueReal = this.$('.real-time').val();
+        var rangeValueReal = this.$('#real-time').val();
         if(rangeValueReal) {
           this.model.save({hoursSpent: rangeValueReal});
         }
       },
+
       updateValue: function(){
           this.close(); 
       }
@@ -154,11 +173,9 @@ app.Router = Backbone.Router.extend({
 });
 
 
-
-
     // instance of the Collection
     app.todoList = new app.TodoList();
 app.router = new app.Router();
 Backbone.history.start(); 
 app.appView = new app.AppView();
-app.appView2 = new app.AppView2();
+// app.appView2 = new app.AppView2();
