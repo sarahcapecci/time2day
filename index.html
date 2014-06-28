@@ -11,39 +11,41 @@
     <body>
         <h1>How do you <em>expect</em> to spend your time today?</h1>
         <section id="expected">
-            <h1>Expectations</h1>
-            <input id="new-todo" placeholder="What will you do today?">
+            <h2>Expectations</h2>
+            <label for="input">What will you do today?</label>
+            <input id="new-todo" name="input" placeholder="Type here">
             <label for="hours">For how long?</label>
-            <input id="expected-time" type="range" name="hours" min="0" max="10" step="0.5" >
+            <input id="expected-time" type="range" name="hours" min="0" max="10" step="0.5" onchange="updateTextInput(this.value);">
+            <input type="text" id="textInput" value="">
             <button class="saveTask">Save</button>
-            <ul id="todo-list"></ul>
+            <ol id="todo-list"></ol>
         </section>
 
         <section id="real">
-            <h1>Done</h1>
-            <h2>For how long?</h2>
-            <ul id="todo-list-copy"></ul>
+            <h2>Done</h2>
+            <h3>For how long?</h3>
+            <ol id="todo-list-copy"></ol>
         </section>
 
 
         <section id="result">
-        <a href="#">Show me the result</a>
-            <h1>Results</h1>
+        <a class="resultDisplay" href="#">Show me the result</a>
+            <h2>Results</h2>
             <canvas id="myChart" width="600" height="400"></canvas>
         </section>
         
         <script type="text/template" id="item-template">
           <div class="view">
             <label><%- title %></label>
-            <button class="editTask">Edit</button>
+            <a href="#" class="editTask">Edit</a>
             <input id="editInput" type="text" value="<%- title %>">
-            <button class="doneEditingTask">Done</button>
+            <a href="#" class="doneEditingTask">Done</a>
 
             <span><%- hoursExpected %> hours</span>
-            <button class="editTime">Edit</button>
-            
-            <input id="editRange" type="range" name="hours" min="0" max="10" step="0.5" value="<% hoursExpected %>"/>
-            <button class="doneEditingTime">Done</button>
+            <a href="#" class="editTime">Edit</a>
+            <input id="editRange" type="range" name="hours" min="0" max="10" step="0.5" value="<% hoursExpected %>" onchange="updateTextInput(this.value);"/>
+            <input type="text" id="editedTextInput" value="">
+            <a href="#" class="doneEditingTime">Done</a>
             
           </div>
         </script>

@@ -215,4 +215,12 @@ var timeChart = new Chart(document.getElementById("myChart").getContext("2d")).B
   
 // });
 
+function updateTextInput(val) {
+      document.getElementById('textInput').value=val; 
+}
+
+function updateTextInput(val) {
+      document.getElementById('editedTextInput').value=val; 
+    }
+
 

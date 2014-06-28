@@ -1,4 +1,5 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,600);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+@import url(http://fonts.googleapis.com/css?family=Droid+Serif);
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -185,17 +186,111 @@ td, th {
 }
 
 body {
+  font-family: 'Droid Serif', serif;
+  color: #333333;
+  background-color: white;
+}
+
+h1, h2, h3 {
   font-family: 'Open Sans', 'Arial', sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
+h1 {
+  text-align: center;
+  width: 70%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+section {
+  margin: 5% auto;
+  padding: 10px;
+}
+
 li {
-  list-style: none;
+  display: block;
+  padding: 5px;
+  margin: 1% auto;
 }
 
 #expected, #real {
   width: 50%;
   float: left;
   display: inline-block;
+  border: 1px solid #f36c00;
+}
+
+#expected label {
+  display: block;
+  margin: 2% auto;
+  padding: 5px;
+}
+
+#new-todo {
+  width: 60%;
+  border: 2px solid #333333;
+  padding: 10px;
+  -webkit-transition: all 0.5s ease;
+}
+#new-todo:focus {
+  background-color: white;
+  border: 2px solid #f36c00;
+  outline: none;
+}
+
+.view {
+  display: inline-block;
+}
+
+#expected-time {
+  width: 60%;
+}
+
+.saveTask {
+  display: block;
+  color: white;
+  background-color: #f36c00;
+  border-color: #f4f4f4;
+  padding: 10px 5px;
+}
+
+#todo-list, #todo-list-copy {
+  counter-reset: item-counter;
+}
+
+#todo-list li:before, #todo-list-copy li:before {
+  content: counter(item-counter,decimal);
+  counter-increment: item-counter;
+  display: inline-block;
+}
+
+.editTask, .editTime, .doneEditingTask, .doneEditingTime {
+  color: #f4f4f4;
+  padding: 5px;
+  margin: 0 1%;
+  font-size: 12px;
+}
+.editTask:visited, .editTime:visited, .doneEditingTask:visited, .doneEditingTime:visited {
+  color: #f4f4f4;
+}
+.editTask:hover, .editTime:hover, .doneEditingTask:hover, .doneEditingTime:hover {
+  color: #f36c00;
+  border-bottom: 1px solid #f36c00;
+}
+
+#editInput {
+  border: 2px solid #333333;
+  padding: 2px;
+  -webkit-transition: all 0.5s ease;
+}
+#editInput:focus {
+  background-color: white;
+  border: 2px solid #f36c00;
+  outline: none;
 }
 
 #result {
@@ -203,6 +298,8 @@ li {
   width: 100%;
 }
 
-#editInput, #editRange, .doneEditingTask, .doneEditingTime {
-  display: none;
+.resultDisplay {
+  color: white;
+  background-color: #f36c00;
+  padding: 15px;
 }
