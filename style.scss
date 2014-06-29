@@ -2,7 +2,7 @@
 
 $orange: #f36c00;
 $white: #fff;
-$light-gray: #f4f4f4;
+$light-gray: #E2DBDB;
 $dark-gray: #333;
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
@@ -45,21 +45,23 @@ li {
 }
 
 #expected, #real {
-	width: 50%;
-	float: left;
-	display: inline-block;
+	margin: 2% auto;
+	width: 70%;
+	display: block;
 	border: 1px solid $orange;
 }
 
-#expected {
-	label {
-	display: block;
+
+.question {
 	margin: 2% auto;
-	padding: 5px
-	}
+	padding: 15px 0;
+	display: block;
+	text-align: center;
 }
 
 #new-todo {
+	display: block;
+	margin: 2% auto;
 	width: 60%;
 	border: 2px solid $dark-gray;
 	padding: 10px;
@@ -71,19 +73,37 @@ li {
 	}
 }
 
-.view {
-	display: inline-block;
-}
-#expected-time {
-	width: 60%;
-}
 .saveTask {
 	display: block;
-	color: white;
-	background-color: $orange;
-	border-color: $light-gray;
-	padding: 10px 5px;
+	width: 20%;
+	padding: 5px;
+	margin: 2% auto;
+	background-color: $white;
+	color: $orange;
+	border: 2px solid $light-gray;
+	transition: all 0.2s ease;
+
+	&:hover {
+		border: 2px solid $orange;
+	}
 }
+
+.view, .view2 {
+	display: inline-block;
+	margin: 2% auto 0 auto;
+	width: 90%;
+
+	label, a, input, span {
+		display: inline-block;
+	}
+}
+
+#expected-time {
+	width: 60%;
+	display: block;
+	margin: 2% auto;
+}
+
 
 #todo-list, #todo-list-copy {
 	counter-reset: item-counter;
@@ -93,16 +113,16 @@ li {
 	content: counter(item-counter, decimal);
 	counter-increment: item-counter;
 	display: inline-block;
+	font-size: 25px;
+	vertical-align: middle;
+	margin: 0 3% 0 0;
 }
 
-.editTask, .editTime, .doneEditingTask, .doneEditingTime {
-	color: $light-gray;
-	padding: 5px;
-	margin: 0 1%;
-	font-size: 12px;
-
+.editTask, .editTime {
+	color: $dark-gray;
+	
 	&:visited {
-		color: $light-gray;
+		color: $dark-gray;
 	}
 	&:hover {
 		color: $orange;
@@ -110,8 +130,24 @@ li {
 	}
 }
 
+.editTask, .editTime, .doneEditingTask, .doneEditingTime {
+	padding: 3px;
+	margin: 0 1%;
+	font-size: 10px;
+	transition: all 0.2s ease;
+}
+
+.doneEditingTask, .doneEditingTime {
+	border: 1px solid $orange;
+	color: $orange;
+	&:hover {
+		border-color: $light-gray;
+	}
+}
+
 #editInput {
-	border: 2px solid $dark-gray;
+	display: inline-block;
+	border: 2px solid $light-gray;
 	padding: 2px;
 	-webkit-transition: all 0.5s ease;
 	&:focus {
@@ -121,6 +157,40 @@ li {
 	}
 
 }
+
+.saveTime, .destroy {
+	padding: 5px;
+	background-color: $white;
+	margin: 0 1%;
+	font-size: 12px;
+	vertical-align: middle;
+}
+
+span.expectedTime {
+	display: none;
+}
+
+.saveTime {
+	color: $orange;
+	border: 2px solid $light-gray;
+	transition: all 0.2s ease;
+
+	&:hover {
+		border: 2px solid $orange;
+	}
+}
+
+.destroy {
+	color: red;
+	border: 2px solid $light-gray;
+	transition: all 0.2s ease;
+
+	&:hover {
+		border: 2px solid red;
+	}
+}
+
+
 
 #result {
 	clear: both;
@@ -136,4 +206,45 @@ li {
 	background-color: $orange;
 	padding: 15px;
 
+}
+
+input[type=range] {
+position: relative;
+}
+
+/* RANGE output STYLE */
+output { 
+  position: absolute;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#444444), to(#999999));
+  background-image: -webkit-linear-gradient(top, #444444, #999999);
+  background-image: -moz-linear-gradient(top, #444444, #999999);
+  background-image: -ms-linear-gradient(top, #444444, #999999);
+  background-image: -o-linear-gradient(top, #444444, #999999);
+  width: 40px; 
+  height: 30px; 
+  text-align: center; 
+  color: white; 
+  border-radius: 10px; 
+  display: inline-block; 
+  font: bold 15px/30px Georgia;
+  bottom: 175%;
+  left: 0;
+  margin-left: -1%;
+}
+output:after { 
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 10px solid #999999;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  margin-top: -1px;
+}
+
+.show {
+	display: inline-block;
 }
