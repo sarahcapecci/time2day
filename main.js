@@ -1,113 +1,83 @@
-$(function(){
+$(document).ready(function(){
 
-// Model //
+  $('a').on("click", function(e){
+    e.preventDefault();
+  });
 
-var Tasks = Backbone.Model.extend({
-  defaults: {
-    activity: " ",
-    time: " "
+
+  // CHART setting
+
+  //STILL have to make it refresh every time an item is added!
+
+  var divLabel = $('div.view2').find("label");
+  var activities = [];
+  for (var i = 0; i < divLabel.length; ++i) {
+    activities.push(divLabel[i].innerHTML);
   }
 
-});
+  var expectedTimes = $('div.view2').find(".expectedTime");
+  var xpTimesArray = [];
 
+  for (var i = 0; i < expectedTimes.length; ++i) {
+    xpTimesArray.push(parseFloat(expectedTimes[i].innerHTML));
+  }
 
-// Collection //
-var TaskList = Backbone.Collection.extend({
-  model: Tasks,
+  var realTimes = $('div.view2').find(".realTime");
+  var realTimesArray = [];
 
-  order: function(){
-    if(!this.length) return 1;
-    return this.last().get('order') + 1;
-  },
-
-  comparator: 'order'
-
-});
-
-
-// View //
-
-var TasksView = Backbone.View.extend({
-
-  tagName: 'li',
-  template: _.template($('#item').html()),
-
-  events: {
-    'dblclick .edit': 'edit',
-    'keypress .edit': 'update',
-    'click a.destroy': 'clear'
-
-  },
-
-  initialize: function(){
-    this.listenTo(this.model, 'change', this.render);
-    this.listenTo(this.model, 'destroy', this.remove);
-  },
-
-  render: function(){
-    this.$el.html(this.template(this.model.activity));
-    this.input = this.$('.edit');
-    return this;
-  },
-
-  edit: function(){
-    this.$el.addClass('edit');
-    this.input.focus();
-  },
-
-  update: function(e) {
-    if(e.keyCode == 13) {
-      this.close();
-    };
-  },
-
-  clear: function(){
-    this.model.destroy();
+  for (var i = 0; i < realTimes.length; ++i) {
+    realTimesArray.push(parseFloat(realTimes[i].innerHTML));
   }
 
 
 
-});
-
-
-var AppView = Backbone.View.extend({
-  el: $('#todotodayapp'),
-  events: {
-    "keypress #new-todo": 'createNew',
-    "click #clear" : 'clearItem'
-  },
-
-  initialize: function() {
-    this.input = this.$('#new-todo');
-
-    this.listenTo(TodoToday, 'add', this.addOne);
-    this.listenTo(TodoToday, 'reset', this.addAll);
-    this.listenTo(TodoToday, 'all', this.render);
-
-    TodoToday.fetch();
-  },
-
-  addOne: function(todo) {
-       var view = new TodoTodayView({model: TodoToday});
-       this.$("#todo").append(view.render().el);
-  },
-
-  addAll: function(){
-    TodoToday.each(this.addOne, this);
-  },
-
-  createNew: function(e){
-    if(e.keyCode != 13) return;
-    if(!this.input.val()) return;
-
-    TodoToday.create({activity: this.input.val()})
-    this.input.val('');
+  var barChartData = {
+        labels : activities,
+        datasets : [
+          {
+            fillColor : "rgba(244, 163, 99, 0.5)",
+            strokeColor : "rgba(244, 163, 99, 1)",
+            data : xpTimesArray
+          },
+          {
+            fillColor : "rgba(243, 108, 0, 0.5)",
+            strokeColor : "rgba(243, 108, 0, 0.95)",
+            data : realTimesArray
+          },
+        ]
   }
 
 
+
+  // Chart Display
+
+  $('.resultDisplay').on("click", function(e){
+    e.preventDefault;
+    $('#result').show(); 
+    var timeChart = new Chart(document.getElementById("myChart").getContext("2d")).Bar(barChartData); 
+  });
+
+
 });
 
-var App = new AppView;
 
+
+// RANGE OUTPUT
+$(function() {
+ var el;
+ 
+ // Select all range inputs, watch for change
+ $("input[type='range']").change(function() {
+ 
+   el = $(this);
+   // Update value
+   el
+     .next("output")
+     .text(el.val());
+ })
+
+  //page load
+
+  .trigger("change");
 
 });

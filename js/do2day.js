@@ -10,7 +10,7 @@ app.Todo = Backbone.Model.extend({
 
 app.TodoList = Backbone.Collection.extend({
       model: app.Todo,
-      localStorage: new Backbone.LocalStorage("tasks")
+      localStorage: new Store("backbone-todo")
 });
 
 app.AppView = Backbone.View.extend({
@@ -178,7 +178,6 @@ app.Router = Backbone.Router.extend({
       },
       startApp: function() {
         app.todoList.trigger('reset');
-        app.todoList.destroy();
       }
 });
 
