@@ -9,34 +9,34 @@
 
     </head>
     <body>
-        <h1>How do you <em>expect</em> to spend your time today?</h1>
-        <section id="expected">
-            <h2>Expectations</h2>
-            <label class="question" for="input">What will you do today?</label>
-            <input id="new-todo" name="input" placeholder="Type here">
-            <label class="question" for="hours">For how long?</label>
-            <input id="expected-time" type="range" name="range" min="0" max="10" step="0.5">
-            <output for="range"></output>
-            <button class="saveTask">Save</button>
-            <ol id="todo-list"></ol>
-        </section>
+        <div class="wrapper clearfix">
+            <h1>Time is limited, spend it wisely.</h1>
+            <section id="expected">
+                <h2>How do you plan to spend your day?</h2>
+                <label class="question" for="input">What will you do today?</label>
+                <input id="new-todo" name="input" placeholder="Type here">
+                <label class="question" for="hours">For how long (hours)?</label>
+                <input id="expected-time" type="range" name="range" min="0" max="10" step="0.5">
+                <output for="range"></output>
+                <button class="saveTask">Save</button>
+                <ol id="todo-list"></ol>
+            </section>
 
-        <section id="real">
-            <h2>Done</h2>
-            <h3>For how long?</h3>
-            <ol id="todo-list-copy"></ol>
-        </section>
+            <section id="real">
+                <h2>How did you actually spend it?</h2>
+                <ol id="todo-list-copy"></ol>
+            </section>
 
-
-        <section id="result">
-        <a class="resultDisplay" href="#">Show me the result</a>
-            <h2>Results</h2>
-            <canvas id="myChart" width="600" height="400"></canvas>
-        <div class="subtitles">
-            <div class="expectedSubtitle"></div><span>Expected Time</span>
-            <div class="realSubtitle"></div><span>Real Time</span>
+            <a class="resultDisplay" href="#">Show me the result</a>
+            <section id="result">
+                <h2>Results</h2>
+                <canvas id="myChart" width="800" height="300"></canvas>
+            <div class="subtitles">
+                <div class="expectedSubtitle"></div><span>Expected Time</span>
+                <div class="realSubtitle"></div><span>Real Time</span>
+            </div>
+            </section>
         </div>
-        </section>
         
         <script type="text/template" id="item-template">
           <div class="view">
@@ -56,14 +56,14 @@
 
         <script type="text/template" id="item-template-2">
           <div class="view2">
-            <span>I <em>expected</em> to <label class="activity"><%- title %></label> for</span>
-            <span class="expectedTime"><%- hoursExpected %>hours,</span>
-            <span>but <em>actually</em> did it for </span>
-            <span class="realTime"><%- hoursSpent %>hours</span>
+            <span>I <span class="expectedTimeSpan">expected</span> to <label class="activity"><%- title %></label> for</span>
+            <span class="expectedTime"><%- hoursExpected %> hours,</span>
+            <span>but <span class="realTimeSpan">actually</span> did it for </span>
+            <span class="realTime"><%- hoursSpent %> <strong>hours</strong></span>
             <input id="real-time" type="range" name="hours" min="0" max="10" step="0.5"/>
             <a href="" class="hidden editTask2">Edit</a>
             <a href="" class="saveTime">Save</a>
-            <a href="" class="hidden destroy">Remove</a>
+            <a href="" class="destroy">Remove</a>
           </div>
         </script>
 

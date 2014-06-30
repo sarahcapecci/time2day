@@ -78,10 +78,12 @@ app.TodoView = Backbone.View.extend({
       editTask: function(){
         this.$('#editInput').addClass('show');
         this.$('.doneEditingTask').addClass('show');
+        this.$('.editTask').addClass('hidden');
       },
       editTime: function(){
         this.$('#editRange').addClass('show');
         this.$('.doneEditingTime').addClass('show');
+        this.$('.editTime').addClass('hidden');
       },
       updateTaskValue: function(){
         //sets what will be edited and updated
@@ -92,6 +94,8 @@ app.TodoView = Backbone.View.extend({
         }
         this.$('#editInput').removeClass('show');
         this.$('.doneEditingTask').removeClass('show');
+        this.$('.editTask').removeClass('hidden');
+        this.$('.editTime').removeClass('hidden');
         
       },
       updateTimeValue: function(){
@@ -144,7 +148,6 @@ app.TodoView2 = Backbone.View.extend({
         }
          this.$('.saveTime').addClass('hidden');
          this.$('#real-time').addClass('hidden');
-         this.$('.destroy').addClass('show');
          this.$('.editTask2').addClass('show');
       },
 
@@ -173,6 +176,11 @@ app.todoList = new app.TodoList();
 app.router = new app.Router();
 Backbone.history.start(); 
 app.appView = new app.AppView();
+
+$('a').on("click", function(e){
+  e.preventDefault();
+});
+
 
 // CHART setting
 
@@ -204,23 +212,23 @@ var barChartData = {
       labels : activities,
       datasets : [
         {
-          fillColor : "rgba(255, 186, 132,0.5)",
-          strokeColor : "rgba(255, 186, 132,1)",
+          fillColor : "rgba(244, 163, 99, 0.5)",
+          strokeColor : "rgba(244, 163, 99, 1)",
           data : xpTimesArray
         },
         {
-          fillColor : "rgba(243, 108, 0,0.5)",
+          fillColor : "rgba(243, 108, 0, 0.5)",
           strokeColor : "rgba(243, 108, 0, 0.95)",
           data : realTimesArray
         },
       ]
-    }
+}
 
 var timeChart = new Chart(document.getElementById("myChart").getContext("2d")).Bar(barChartData);
 
-// $('a').on("click", function(){
-  
-// });
+$('a').on("click", function(){
+  $('#result').show();  
+});
 
 
 
@@ -228,7 +236,7 @@ var timeChart = new Chart(document.getElementById("myChart").getContext("2d")).B
 
 
 
-// DOM Ready
+// RANGE OUTPUT
 $(function() {
  var el, newPoint, newPlace, offset;
  
@@ -266,8 +274,6 @@ $(function() {
 });
 
 
-$('a').on("click", function(e){
-  e.preventDefault();
-});
+
 
 
