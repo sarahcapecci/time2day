@@ -243,8 +243,8 @@ li {
 }
 
 .question {
-  margin: 2% auto;
-  padding: 15px 0;
+  margin: 5% auto 0 auto;
+  padding: 10px 0;
   display: block;
   text-align: center;
 }
@@ -292,7 +292,7 @@ li {
 
 .range {
   width: 60%;
-  margin: 0 auto;
+  margin: 3% auto 5% auto;
 }
 
 #expected-time {

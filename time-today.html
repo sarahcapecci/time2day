@@ -42,14 +42,14 @@
         <script type="text/template" id="item-template">
           <div class="view">
             <label><%- title %></label>
-            <a href="" class="editTask">Edit</a>
+            <a class="editTask">Edit</a>
             <input class="hidden" id="editInput" type="text" value="<%- title %>">
-            <a href="" class="hidden doneEditingTask">Done</a>
+            <a class="hidden doneEditingTask">Done</a>
             <span>for <%- hoursExpected %> hours</span>
-            <a href="" class="editTime">Edit</a>
+            <a class="editTime">Edit</a>
             <input class="hidden" name="range" id="editRange" type="range" name="hours" min="0" max="10" step="0.5" value="<% hoursExpected %>"/>
             <output class="hidden miniRangeOutput" for="hours"></output>
-            <a href="#" class="hidden doneEditingTime">Done</a>
+            <a class="hidden doneEditingTime">Done</a>
             
           </div>
         </script>

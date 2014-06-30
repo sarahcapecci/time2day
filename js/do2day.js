@@ -10,7 +10,7 @@ app.Todo = Backbone.Model.extend({
 
 app.TodoList = Backbone.Collection.extend({
       model: app.Todo,
-      localStorage: new Store("backbone-todo")
+      localStorage: new Store("tasks")
 });
 
 app.AppView = Backbone.View.extend({
@@ -150,7 +150,7 @@ app.TodoView2 = Backbone.View.extend({
          this.$('.saveTime').addClass('hidden');
          this.$('#real-time').addClass('hidden');
          this.$('.editTask2').removeClass('hidden');
-         this.$('.inlineRangeOutput').addClass('hidden');
+         this.$('.miniRangeOutput').addClass('hidden');
          this.$('.realTime').removeClass('hidden');
       },
 
@@ -161,7 +161,7 @@ app.TodoView2 = Backbone.View.extend({
       updateRealTime: function(){
         this.$('.saveTime').removeClass('hidden');
         this.$('#real-time').removeClass('hidden');
-        this.$('.inlineRangeOutput').removeClass('hidden');
+        this.$('.miniRangeOutput').removeClass('hidden');
         this.$('.editTask2').addClass('hidden');
       },
 

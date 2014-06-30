@@ -7,7 +7,7 @@ $(document).ready(function(){
 
   // CHART setting
 
-  //STILL have to make it refresh everytime an item is added!
+  //STILL have to make it refresh every time an item is added!
 
   var divLabel = $('div.view2').find("label");
   var activities = [];
@@ -58,25 +58,26 @@ $(document).ready(function(){
   });
 
 
-});
-
-
 
 // RANGE OUTPUT
-$(function() {
- var el, newPoint, newPlace, offset;
+
+window.setInterval(function(){
+var el;
  
  // Select all range inputs, watch for change
  $("input[type='range']").change(function() {
  
-   el = $(this);
+    el = $(this);
    // Update value
-   el
+    el
      .next("output")
      .text(el.val());
  })
 
   //page load
- .trigger('change');
+
+    .trigger("change");
+  }, 1000);
+
 
 });
