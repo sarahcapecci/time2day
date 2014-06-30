@@ -32,20 +32,23 @@
         <a class="resultDisplay" href="#">Show me the result</a>
             <h2>Results</h2>
             <canvas id="myChart" width="600" height="400"></canvas>
+        <div class="subtitles">
+            <div class="expectedSubtitle"></div><span>Expected Time</span>
+            <div class="realSubtitle"></div><span>Real Time</span>
+        </div>
         </section>
         
         <script type="text/template" id="item-template">
           <div class="view">
             <label><%- title %></label>
-            <a href="#" class="editTask">Edit</a>
-            <input id="editInput" type="text" value="<%- title %>">
-            <a href="#" class="doneEditingTask">Done</a>
-
+            <a href="" class="editTask">Edit</a>
+            <input class="hidden" id="editInput" type="text" value="<%- title %>">
+            <a href="" class="hidden doneEditingTask">Done</a>
             <span>for <%- hoursExpected %> hours</span>
-            <a href="#" class="editTime">Edit</a>
-            <input name="range" id="editRange" type="range" name="hours" min="0" max="10" step="0.5" value="<% hoursExpected %>"/>
+            <a href="" class="editTime">Edit</a>
+            <input class="hidden" name="range" id="editRange" type="range" name="hours" min="0" max="10" step="0.5" value="<% hoursExpected %>"/>
             <output for="hours"></output>
-            <a href="#" class="doneEditingTime">Done</a>
+            <a href="#" class="hidden doneEditingTime">Done</a>
             
           </div>
         </script>
@@ -53,12 +56,14 @@
 
         <script type="text/template" id="item-template-2">
           <div class="view2">
-            <label class="activity"><%- title %></label>
-            <span class="expectedTime"><%- hoursExpected %>hours</span>
-            <span class="realTime">for <%- hoursSpent %>hours</span>
+            <span>I <em>expected</em> to <label class="activity"><%- title %></label> for</span>
+            <span class="expectedTime"><%- hoursExpected %>hours,</span>
+            <span>but <em>actually</em> did it for </span>
+            <span class="realTime"><%- hoursSpent %>hours</span>
             <input id="real-time" type="range" name="hours" min="0" max="10" step="0.5"/>
-            <button class="saveTime">Save</button>
-            <button class="destroy">Remove</button>
+            <a href="" class="hidden editTask2">Edit</a>
+            <a href="" class="saveTime">Save</a>
+            <a href="" class="hidden destroy">Remove</a>
           </div>
         </script>
 

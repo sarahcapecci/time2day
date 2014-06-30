@@ -258,11 +258,15 @@ li {
 .saveTask:hover {
   border: 2px solid #f36c00;
 }
+.saveTask:focus {
+  outline-color: #f36c00;
+}
 
 .view, .view2 {
   display: inline-block;
   margin: 2% auto 0 auto;
   width: 90%;
+  vertical-align: middle;
 }
 .view label, .view a, .view input, .view span, .view2 label, .view2 a, .view2 input, .view2 span {
   display: inline-block;
@@ -298,7 +302,7 @@ li {
   border-bottom: 1px solid #f36c00;
 }
 
-.editTask, .editTime, .doneEditingTask, .doneEditingTime {
+.editTask, .editTime, .doneEditingTask, .doneEditingTime, .editTask2 {
   padding: 3px;
   margin: 0 1%;
   font-size: 10px;
@@ -314,7 +318,6 @@ li {
 }
 
 #editInput {
-  display: inline-block;
   border: 2px solid #e2dbdb;
   padding: 2px;
   -webkit-transition: all 0.5s ease;
@@ -331,10 +334,6 @@ li {
   margin: 0 1%;
   font-size: 12px;
   vertical-align: middle;
-}
-
-span.expectedTime {
-  display: none;
 }
 
 .saveTime {
@@ -358,6 +357,40 @@ span.expectedTime {
 #result {
   clear: both;
   width: 100%;
+}
+
+#myChart {
+  width: 70%;
+  margin: 2% auto;
+  display: inline-block;
+  float: left;
+}
+
+.expectedSubtitle {
+  background-color: rgba(255, 186, 132, 0.5);
+  border: 1px solid #ffba84;
+}
+
+.realSubtitle {
+  background-color: rgba(243, 108, 0, 0.5);
+  border: 1px solid #f36c00;
+}
+
+.expectedSubtitle, .realSubtitle {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.subtitles {
+  width: 25%;
+  display: inline-block;
+  float: right;
+}
+.subtitles span {
+  vertical-align: middle;
+  margin: 0 1%;
 }
 
 .resultDisplay {
@@ -404,6 +437,10 @@ output:after {
   margin-top: -1px;
 }
 
-.show {
+a.hidden, input.hidden {
+  display: none;
+}
+
+input.show, a.show {
   display: inline-block;
 }

@@ -86,12 +86,16 @@ li {
 	&:hover {
 		border: 2px solid $orange;
 	}
+	&:focus {
+		outline-color: $orange;
+	}
 }
 
 .view, .view2 {
 	display: inline-block;
 	margin: 2% auto 0 auto;
 	width: 90%;
+	vertical-align: middle;
 
 	label, a, input, span {
 		display: inline-block;
@@ -130,7 +134,7 @@ li {
 	}
 }
 
-.editTask, .editTime, .doneEditingTask, .doneEditingTime {
+.editTask, .editTime, .doneEditingTask, .doneEditingTime, .editTask2 {
 	padding: 3px;
 	margin: 0 1%;
 	font-size: 10px;
@@ -146,7 +150,7 @@ li {
 }
 
 #editInput {
-	display: inline-block;
+	// display: inline-block;
 	border: 2px solid $light-gray;
 	padding: 2px;
 	-webkit-transition: all 0.5s ease;
@@ -166,9 +170,6 @@ li {
 	vertical-align: middle;
 }
 
-span.expectedTime {
-	display: none;
-}
 
 .saveTime {
 	color: $orange;
@@ -197,6 +198,39 @@ span.expectedTime {
 	width: 100%;
 }
 
+#myChart {
+	width: 70%;
+	margin: 2% auto;
+	display: inline-block;
+	float: left;
+}
+
+.expectedSubtitle {
+	background-color: rgba(255, 186, 132,0.5);
+	border: 1px solid rgba(255, 186, 132,1);
+}
+
+.realSubtitle {
+	background-color: rgba(243, 108, 0,0.5);
+	border: 1px solid rgba(243, 108, 0,1);
+}
+
+.expectedSubtitle, .realSubtitle {
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.subtitles {
+	width: 25%;
+	display: inline-block;
+	float: right;
+	span {
+		vertical-align: middle;
+		margin: 0 1%;
+	}
+}
 #editInput, #editRange, .doneEditingTask, .doneEditingTime {
 	// display: none;
 }
@@ -205,7 +239,6 @@ span.expectedTime {
 	color: $white;
 	background-color: $orange;
 	padding: 15px;
-
 }
 
 input[type=range] {
@@ -245,6 +278,10 @@ output:after {
   margin-top: -1px;
 }
 
-.show {
+a.hidden, input.hidden {
+	display: none;
+}
+
+input.show, a.show {
 	display: inline-block;
 }

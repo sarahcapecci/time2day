@@ -5,7 +5,7 @@ app.Todo = Backbone.Model.extend({
   defaults: {
     title: '',
     hoursExpected: '',
-    hoursSpent: ''
+    hoursSpent: '0'
   }
 });
 
@@ -77,9 +77,11 @@ app.TodoView = Backbone.View.extend({
       },
       editTask: function(){
         this.$('#editInput').addClass('show');
+        this.$('.doneEditingTask').addClass('show');
       },
       editTime: function(){
         this.$('#editRange').addClass('show');
+        this.$('.doneEditingTime').addClass('show');
       },
       updateTaskValue: function(){
         //sets what will be edited and updated
@@ -89,6 +91,7 @@ app.TodoView = Backbone.View.extend({
         // activities.push(value)  
         }
         this.$('#editInput').removeClass('show');
+        this.$('.doneEditingTask').removeClass('show');
         
       },
       updateTimeValue: function(){
@@ -98,12 +101,13 @@ app.TodoView = Backbone.View.extend({
           // xpTimesArray.push(rangeValue)
         }
         this.$('#editRange').removeClass('show');
+        this.$('.doneEditingTime').removeClass('show');
       },
 
       updateValue: function(){
           this.updateTitle();
           this.updateHours(); 
-          this.$el.removeClass('nowEditing');
+          this.$el.removeClass('show');
       },
       destroy: function(){
         this.model.destroy();
@@ -138,7 +142,10 @@ app.TodoView2 = Backbone.View.extend({
         if(rangeValueReal) {
           this.model.save({hoursSpent: rangeValueReal});
         }
-        // realTimesArray.push(rangeValueReal);
+         this.$('.saveTime').addClass('hidden');
+         this.$('#real-time').addClass('hidden');
+         this.$('.destroy').addClass('show');
+         this.$('.editTask2').addClass('show');
       },
 
       updateValue: function(){
@@ -197,16 +204,16 @@ var barChartData = {
       labels : activities,
       datasets : [
         {
-          fillColor : "rgba(220,220,220,0.5)",
-          strokeColor : "rgba(220,220,220,1)",
+          fillColor : "rgba(255, 186, 132,0.5)",
+          strokeColor : "rgba(255, 186, 132,1)",
           data : xpTimesArray
         },
         {
-          fillColor : "rgba(151,187,205,0.5)",
-          strokeColor : "rgba(151,187,205,1)",
+          fillColor : "rgba(243, 108, 0,0.5)",
+          strokeColor : "rgba(243, 108, 0, 0.95)",
           data : realTimesArray
         },
-      ],
+      ]
     }
 
 var timeChart = new Chart(document.getElementById("myChart").getContext("2d")).Bar(barChartData);
