@@ -107,8 +107,8 @@ app.TodoView = Backbone.View.extend({
       },
 
       updateValue: function(){
-          this.updateTitle();
-          this.updateHours(); 
+          this.updateTaskValue();
+          this.updateTimeValue(); 
           this.$el.removeClass('show');
       },
       destroy: function(){
@@ -119,10 +119,6 @@ app.TodoView = Backbone.View.extend({
 //View of the last part - when the day is over
 
 app.TodoView2 = Backbone.View.extend({
-      defaults: {
-        hoursSpent: 0
-      },
-
       tagName: 'li',
       template: _.template($('#item-template-2').html()),
 
@@ -141,21 +137,16 @@ app.TodoView2 = Backbone.View.extend({
         'click .destroy': 'destroy',
         'click .editTask2': 'updateRealTime'
       },
-
-      close: function(){
+      updateValue: function(){
         var rangeValueReal = this.$('#real-time').val();
         if(rangeValueReal) {
           this.model.save({hoursSpent: rangeValueReal});
         }
-         this.$('.saveTime').addClass('hidden');
-         this.$('#real-time').addClass('hidden');
-         this.$('.editTask2').removeClass('hidden');
-         this.$('.miniRangeOutput').addClass('hidden');
-         this.$('.realTime').removeClass('hidden');
-      },
-
-      updateValue: function(){
-          this.close(); 
+        this.$('.saveTime').addClass('hidden');
+        this.$('#real-time').addClass('hidden');
+        this.$('.editTask2').removeClass('hidden');
+        this.$('.miniRangeOutput').addClass('hidden');
+        this.$('.realTime').removeClass('hidden');
       },
 
       updateRealTime: function(){

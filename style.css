@@ -394,52 +394,6 @@ strong {
   color: #f36c00;
 }
 
-#result {
-  display: none;
-  clear: both;
-  width: 100%;
-}
-
-canvas {
-  margin: 2% auto;
-}
-
-.expectedSubtitle {
-  background-color: rgba(244, 163, 99, 0.5);
-  border: 1px solid #f4a363;
-}
-
-.realSubtitle {
-  background-color: rgba(243, 108, 0, 0.5);
-  border: 1px solid #f36c00;
-}
-
-.expectedSubtitle, .realSubtitle {
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.subtitles {
-  text-align: center;
-  margin: 0 auto;
-}
-.subtitles span {
-  vertical-align: middle;
-  margin: 0 1%;
-}
-
-.resultDisplay {
-  display: block;
-  text-align: center;
-  color: white;
-  background-color: #f36c00;
-  padding: 15px;
-  width: 30%;
-  margin: 5% auto;
-}
-
 /* RANGE output STYLE */
 .rangeOutput {
   display: inline-block;

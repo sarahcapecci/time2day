@@ -54,8 +54,6 @@ h2 {
 	padding: 10px 0;
 }
 
-
-
 li {
 	display: block;
 	padding: 5px;
@@ -228,56 +226,6 @@ strong {
 	color: $orange;
 }
 
-#result {
-	display: none;
-	clear: both;
-	width: 100%;
-}
-
-canvas {
-	margin: 2% auto;
-}
-
-.expectedSubtitle {
-	background-color: rgba(244, 163, 99,0.5);
-	border: 1px solid rgba(244, 163, 99,1);
-}
-
-.realSubtitle {
-	background-color: rgba(243, 108, 0,0.5);
-	border: 1px solid rgba(243, 108, 0,1);
-}
-
-.expectedSubtitle, .realSubtitle {
-	width: 20px;
-	height: 20px;
-	display: inline-block;
-	vertical-align: middle;
-}
-
-.subtitles {
-	text-align: center;
-	margin: 0 auto;
-	span {
-		vertical-align: middle;
-		margin: 0 1%;
-	}
-}
-
-
-.resultDisplay {
-	display: block;
-	text-align: center;
-	color: $white;
-	background-color: $orange;
-	padding: 15px;
-	width: 30%;
-	margin: 5% auto;
-}
-
-input[type=range] {
-
-}
 
 /* RANGE output STYLE */
 .rangeOutput { 
